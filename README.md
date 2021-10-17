@@ -25,3 +25,4 @@ https://github.com/OlafenwaMoses/ImageAI/blob/master/imageai/Detection/Custom/CU
 ```
 
 Файлы датасетов:
+```detection_model-ex-018--loss-0014.381.h5``` и ```detection_config.json``` 
