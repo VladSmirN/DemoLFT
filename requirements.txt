@@ -1,3 +1,6 @@
-opencv-python
-imageai
-tensorflow-gpu
+opencv-python==4.8.0.74
+imageai==3.0.3
+torch==2.0.1
+torchvision==0.15.2
+tqdm==4.64.1
+scipy==1.7.3
