@@ -1,28 +1,21 @@
-Для запуска нужно установить это:
+Для запуска через докер нужно запустить команды:
 
 ```
-pip install opencv-python
-pip install imageai
-pip install tensorflow-gpu
+sudo docker image pull vladsmirn/cabile:v1
+sudo docker run --rm -it  --name cabile -v ./your_data_folder:/app/data/ -v ./your_predict_folder:/app/predicts vladsmirn/cabile:v1
 ```
-
-Обработка просходит на процессоре можно попробывать установить CUDA для работы на видео:
+Где your_data_folder - папка с данными для предсказаний. По умолчанию в data лежат файлы из https://github.com/VladSmirN/DemoLFT/tree/master/data . 
+Если не требуется добавлять новые файлы для предсказания, то volume можно проигнорировать (команды ниже).
+``` 
+sudo docker image pull vladsmirn/cabile:v1
+sudo docker run --rm -it  --name cabile  -v ./your_predict_folder:/app/predicts vladsmirn/cabile:v1
 ```
-https://www.machinelearningmastery.ru/installing-tensorflow-with-cuda-cudnn-and-gpu-support-on-windows-10-60693e46e781/
+your_predict_folder - папка, куда будут сохраняться результаты.  
+
+После запуска контейнера в нем нужно ввести 
+``` 
+yolo predict model=models/best.pt save=True source=./data/your_file_for_predict project=./predicts
 ```
-
-``` FirstCustomDetection ``` - Анализ фото.   
-Рядом с файлом размещаяем ```frame1.jpg``` для анализа.
+Где your_file_for_predict файл из папки your_data_folder, на котором будет работать алгоритм распознавания. Результат будет сохраняться в your_predict_folder. 
 
 
-``` FirstVideoObjectDetection ``` - Анализ видео.   
-Файл для анализа сохраняем в папку ```AVI``` название ```1.avi```.   
-После обработки будет создан файл ```cabile_detected.avi```
-
-Описание процесов, там же есть описание для потокового видео:
-```
-https://github.com/OlafenwaMoses/ImageAI/blob/master/imageai/Detection/Custom/CUSTOMVIDEODETECTION.md
-```
-
-Файлы датасетов:
-```detection_model-ex-018--loss-0014.381.h5``` и ```detection_config.json``` 
